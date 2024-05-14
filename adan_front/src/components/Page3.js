@@ -390,9 +390,15 @@ export default function Page3() {
         const popup = document.getElementById("popuplab");
         popup.style.transform = "scale(0)";
     }
+    var checkerdisplaythebooked = true;
     function opencreatedlabspopup() {
         const ll = document.getElementById("PopupForCreatedLabs");
-        ll.style.transform = "scale(1)";       
+        ll.style.transform = "scale(1)";   
+        if(checkerdisplaythebooked){
+
+            displaythebooked();
+        }
+
     }
     async function fetchthevreatedlabspopdata(){
         
@@ -432,36 +438,40 @@ export default function Page3() {
         const ll = document.getElementById("PopupForCreatedLabs");
         ll.style.transform = "scale(0)";
     }
-    // let bookedarr = getCookie("college_booked").split("~");
-    // if(bookedarr.length === 1  ){
 
+    function displaythebooked(){
+        checkerdisplaythebooked = false;
+        let bookedarr = getCookie("college_booked").split("~");
+        if(bookedarr.length === 1  ){
     
-    // if (bookedarr[0] === ".") {
-    //     const bookedhistoryheader = document.getElementById("bookedhistoryheader");
-    //     bookedhistoryheader.innerText = "No booking History..! bro hehe";
-    // }}
-    // else{ 
-    //     let dataDiv = document.getElementById("managementbookeddata");
-
-    // function appendDataWithDelay(index) {
-    //     if (index < bookedarr.length) {
-    //         let paragraph = document.createElement("p");
-    //         paragraph.textContent = bookedarr[index];
-
-            
-    //             dataDiv.appendChild(paragraph);
-            
-
-    //         index++;
-    //         setTimeout(function () {
-    //             appendDataWithDelay(index);
-    //         }, 2000);
-    //     }
-    //     }
         
-
-    //     appendDataWithDelay(0);
-    // }
+        if (bookedarr[0] === ".") {
+            const bookedhistoryheader = document.getElementById("bookedhistoryheader");
+            bookedhistoryheader.innerText = "No booking History..! bro hehe";
+        }}
+        else{ 
+            let dataDiv = document.getElementById("managementbookeddata");
+    
+        function appendDataWithDelay(index) {
+            if (index < bookedarr.length) {
+                let paragraph = document.createElement("p");
+                paragraph.textContent = bookedarr[index];
+    
+                
+                    dataDiv.appendChild(paragraph);
+                
+    
+                index++;
+                setTimeout(function () {
+                    appendDataWithDelay(index);
+                }, 1000);
+            }
+            }
+            
+    
+            appendDataWithDelay(1);
+        }
+    }
     return (
 
 
@@ -499,7 +509,7 @@ export default function Page3() {
                     the booked History 
                 </div>
                 <div className="managementbookeddata" id="managementbookeddata">
-                      .
+                      
                 </div>
             </div>
             <div className="piribo">
