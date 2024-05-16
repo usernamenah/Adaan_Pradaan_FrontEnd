@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* For small screens */
+@media screen and (max-width: 768px) {
+  /* CSS rules for small screens */
+}
+
+/* For medium screens */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* CSS rules for medium screens */
+}
+
+/* For large screens */
+@media screen and (min-width: 1025px) {
+  /* CSS rules for large screens */
+}

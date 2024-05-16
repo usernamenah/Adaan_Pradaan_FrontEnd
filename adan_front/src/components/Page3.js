@@ -443,12 +443,9 @@ export default function Page3() {
         checkerdisplaythebooked = false;
         let bookedarr = getCookie("college_booked").split("~");
         if(bookedarr.length === 1  ){
-    
-        
-        if (bookedarr[0] === ".") {
             const bookedhistoryheader = document.getElementById("bookedhistoryheader");
             bookedhistoryheader.innerText = "No booking History..! bro hehe";
-        }}
+        }
         else{ 
             let dataDiv = document.getElementById("managementbookeddata");
     

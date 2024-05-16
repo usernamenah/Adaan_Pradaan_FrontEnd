@@ -220,6 +220,26 @@ top: 85px;
   pointer-events: none;
 }
 
+.PopupForbookedLabs{
+  position: fixed ;
+  left: 8rem;
+  top: 6rem ;
+  z-index: 999;
+  width: 86rem;
+  height:40rem ;
+  transition: all 0.5s ease-in-out;
+  background-color: #DEB887;
+  border-radius: 5%;
+  transform: scale(0);  
+  overflow-x: hidden;
+  border:  solid 5px  rgb(126, 92, 20);
+  border-radius: 20px 20px 20px 20px; 
+  box-shadow: 0px 0px 5px #8F6600FF, 0px 0px 4px #8F6600FF;
+
+}
+.bookedhistoryheader{
+  pointer-events: none;
+}
 
 
 
@@ -248,8 +268,9 @@ top: 85px;
 
 
 
-
-
+.coltimeanddate{
+  background-color: aquamarine;
+}
 
 
 
