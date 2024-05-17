@@ -68,10 +68,12 @@ export default function Studentpage1() {
         popdateandtime.innerText = c;
         popyear.innerText = d;
         popbranch.innerText = e;
-        mdbstr.push(a);
-        mdbstr.push(b);
-        mdbstr.push(c);
-        mdbstr.push(d);
+        mdbstr[0] = (a);
+        mdbstr[1]=(b);
+        mdbstr[2]=(c);
+        mdbstr[3]=(d);
+        mdbstr[4]=(e);
+
         console.log(a);
         console.log(b);
         console.log(c);
@@ -107,6 +109,12 @@ export default function Studentpage1() {
 
 
             const cls = { email, college, booked1, section, year };
+            const bc = mdbstr[4];
+            const jj = email+","+college+","+section+","+year+","+booked1;
+            alert(bc);
+            alert(jj);
+            const cls1 = { bc , jj };
+
 
             const response = await fetch('http://localhost:4000/api/updatethestudentbooked', {
                 method: 'PUT',
@@ -115,13 +123,20 @@ export default function Studentpage1() {
                 },
                 body: JSON.stringify(cls)
             });
+            const response1 = await fetch('http://localhost:4000/api/updatethemanagementstudentbookings', {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(cls1)
+            });
 
             const data = await response.json();
             // console.log(data);
-            alert("the update is done as : " + data.booked);
+            
 
-            if (response.ok) {
-                console.log("succesfully ");
+            if (response.ok && response1.ok) {
+                alert("the update is done in database" );
             } else {
                 alert("something fishy broo.....!!");
 
@@ -160,6 +175,7 @@ export default function Studentpage1() {
 
 
                     let griddiv = document.createElement("div");
+                    let br = document.createElement("br");
                     griddiv.className = "container-fluid";
                     let griddivrow = document.createElement("div");
                     griddivrow.className = "row";
@@ -195,6 +211,7 @@ export default function Studentpage1() {
                     griddivrow.appendChild(griddivcol32);
                     griddivrow.appendChild(griddivcol33);
                     griddiv.appendChild(griddivrow);
+                    dataDiv.appendChild(br);
                     dataDiv.appendChild(griddiv);
 
 
@@ -345,9 +362,10 @@ export default function Studentpage1() {
                                         <div className='col-10'>
                                             <div className='subjecttext'>  < b className='iiii'> &nbsp;&nbsp;{item.subject}&nbsp;&nbsp;</b></div>
                                         </div>
-                                        <div className='col-2'>
+                                        <div className='col-2 '>
+                                            <div className='ybybyb'>
                                             <div className='side'>&nbsp;&nbsp;&nbsp;year:&nbsp;<b>{item.year}</b></div>
-                                            <div className='side'>branch:&nbsp; <b>{item.branch}</b></div>
+                                            <div className='side'>branch:&nbsp; <b>{item.branch}</b></div></div>
                                         </div>
 
                                     </div>

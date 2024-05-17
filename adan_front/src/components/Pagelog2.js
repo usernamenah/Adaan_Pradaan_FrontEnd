@@ -153,7 +153,8 @@ export default function Pagelog2() {
             password: idthird,
             section: idfourth,
             year: idfifth,
-            booked:""
+            booked:"year,subject,section,Date-Time",
+            studentbooked:"college,username,Date-Time_booked"
         };
 
         console.log(cls);
@@ -190,7 +191,8 @@ export default function Pagelog2() {
             email: idsec,
             college: idfourth,
             idno: idfifth,
-            password: idthird
+            password: idthird,
+            booked:"year,subject,section,Date-Time"
         };
         console.log(cls);
         // fetch('http://localhost:3010/sellers/postdata'

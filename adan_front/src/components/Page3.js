@@ -334,7 +334,7 @@ export default function Page3() {
         var idsec = mdbstr[1];
         var idthird = mdbstr[2];
         var idfourth = mdbstr[3];
-
+        
         var idfifth = getCookie("college_college");;
 
         var cls = {
@@ -394,10 +394,11 @@ export default function Page3() {
     function opencreatedlabspopup() {
         const ll = document.getElementById("PopupForCreatedLabs");
         ll.style.transform = "scale(1)";   
-        if(checkerdisplaythebooked){
+        // if(checkerdisplaythebooked){
 
-            displaythebooked();
-        }
+        //     displaythebooked();
+        // }
+        displaythebooked();
 
     }
     async function fetchthevreatedlabspopdata(){
@@ -469,6 +470,103 @@ export default function Page3() {
             appendDataWithDelay(1);
         }
     }
+    function displaythebooked() {
+        checkerdisplaythebooked = false;
+        let bookedarr = getCookie("college_booked").split("~");
+        if (bookedarr.length === 1) {
+            const bookedhistoryheader = document.getElementById("bookedhistoryheader");
+            bookedhistoryheader.innerText = "No booking History..! bro hehe";
+        }
+        else {
+            let dataDiv = document.getElementById("managementbookeddata");
+
+
+
+            function appendDataWithDelay(index) {
+                if (index < bookedarr.length) {
+                    let contentarray = bookedarr[index].split(",");
+                    let griddiv = document.createElement("div");
+                    griddiv.className = "container-fluid";
+                    let griddivin = document.createElement("div");
+                    griddivin.className = "setppeddata";
+                    let griddivrow = document.createElement("div");
+                    griddivrow.className = "row "+index;
+                    let griddivcol3 = document.createElement("div");
+                    griddivcol3.className = "col-2";
+                    let colsno = document.createElement("div");
+                    colsno.className = "colsno";
+                    let griddivcol30 = document.createElement("div");
+                    griddivcol30.className = "col-2";
+                    let colyear = document.createElement("div");
+                    colyear.className = "colyear";
+                    let griddivcol31 = document.createElement("div");
+                    griddivcol31.className = "col-2";
+                    let colsection = document.createElement("div");
+                    colsection.className = "colsection";
+                    let griddivcol32 = document.createElement("div");
+                    griddivcol32.className = "col-2";
+                    let colsubject = document.createElement("div");
+                    colsubject.className = "colsubject";
+                    let griddivcol33 = document.createElement("div");
+                    griddivcol33.className = "col-3";
+                    let coltimeanddate = document.createElement("div");
+                    coltimeanddate.className = "coltimeanddate";
+                    let griddivcol34 = document.createElement("div");
+                    griddivcol34.className = "col-1";
+                    let colresprowdel = document.createElement("div");
+                    var clnofdel = "del"+index+"";
+                    colresprowdel.className = "clnofdel";
+                    let paragraph = document.createElement("p");
+                    paragraph.textContent = bookedarr[index];
+                    if(index > 0){
+
+                        colsno.textContent = ""+index;
+                        colresprowdel.textContent = "details";
+                    }else{
+                        colsno.textContent = "S.NO";
+                        colresprowdel.textContent = "";
+
+
+                    }
+                    colyear.textContent =contentarray[0] ;
+                    colsection.textContent = contentarray[1];
+                    colsubject.textContent = contentarray[2];
+                    coltimeanddate.textContent = contentarray[3];
+
+                    griddivcol3.appendChild(colsno);
+
+                    griddivcol30.appendChild(colyear);
+                    griddivcol31.appendChild(colsection);
+                    griddivcol32.appendChild(colsubject);
+                    griddivcol33.appendChild(coltimeanddate);
+                    griddivcol34.appendChild(colresprowdel);
+
+                    griddivrow.appendChild(griddivcol3);
+                    griddivrow.appendChild(griddivcol30);
+                    griddivrow.appendChild(griddivcol31);
+                    griddivrow.appendChild(griddivcol32);
+                    griddivrow.appendChild(griddivcol33);
+                    griddivrow.appendChild(griddivcol34);
+                    griddivin.appendChild(griddivrow);
+                    griddiv.appendChild(griddivin);
+                    let breakv = document.createElement("br");
+                    dataDiv.appendChild(breakv);
+
+                    dataDiv.appendChild(griddiv);
+
+
+                    index++;
+                    setTimeout(function () {
+                        appendDataWithDelay(index);
+                    }, 1000);
+                }
+            }
+
+
+            appendDataWithDelay(0);
+        }
+    }
+    //onMouseLeave={() => handleMouseOut1()}
     return (
 
 
@@ -501,8 +599,8 @@ export default function Page3() {
             </div>
             <div className="namebox" type="button"></div>
             <Link to={"/"}><img src="imagesre\logo3.jpg" alt="logo" height="110" width="110" className="logo" type="button" /></Link>
-            <div className="PopupForCreatedLabs" id="PopupForCreatedLabs" onMouseLeave={() => handleMouseOut1()}>
-                <div className="bookedhistoryheader" id="bookedhistoryheader">
+            <div className="PopupForCreatedLabs" id="PopupForCreatedLabs" onMouseLeave={() => handleMouseOut1()} >
+                <div className="bookedhistoryheader" id="bookedhistoryheader" >
                     the booked History 
                 </div>
                 <div className="managementbookeddata" id="managementbookeddata">
