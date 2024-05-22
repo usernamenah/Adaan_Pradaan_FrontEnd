@@ -395,11 +395,43 @@ export default function Page3() {
     function opencreatedlabspopup() {
         const ll = document.getElementById("PopupForCreatedLabs");
         ll.style.transform = "scale(1)";
-        if(checkerdisplaythebooked){
+        if (checkerdisplaythebooked) {
             displaythebooked();
         }
 
     }
+    async function tochangedataafterdeleted(arr) {
+        try {
+            const email = college_email;
+            const college = college_college;
+            const booked1 = arr.toString();
+
+
+            const cls = { email, college, booked1 };
+            const response = await fetch('http://localhost:4000/api/updatethemanagementdeleted', {
+
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(cls)
+            });
+
+            if (response.ok) {
+                alert("succesfully deleted in data base  ");
+            } else {
+                alert("something fishy broo.....!!");
+
+            }
+        } catch (error) {
+            console.error('Error occurred:', error);
+        }
+
+    }
+
+
+
+
     async function fetchthevreatedlabspopdata() {
 
         try {
@@ -453,11 +485,11 @@ export default function Page3() {
         else {
             let dataDiv = document.getElementById("managementbookeddata");
 
-            dataDiv.innerHTML = ''; 
+            dataDiv.innerHTML = '';
             function appendDataWithDelay(index) {
                 if (index < bookedarr.length) {
                     let contentarray = bookedarr[index].split(",");
-                    let pedhadiv =  document.createElement("div");
+                    let pedhadiv = document.createElement("div");
                     pedhadiv.className = "telsugapedhadhi";
 
                     let griddiv = document.createElement("div");
@@ -543,12 +575,18 @@ export default function Page3() {
                     colresprowdel.className = clnofdel;
                     let paragraph = document.createElement("p");
                     if (index > 0) {
+                        griddivrownextcols0forsty.addEventListener('click', function () {
+                            window.open('/student_booked_details', '_blank');
+                        });
+
+                    }
+                    if (index > 0) {
 
                         griddivrownextcols2forsty.addEventListener('click', function () {
-                            bookedarr = bookedarr.filter((_, i) => i !== index);
+                            bookedarr = bookedarr.filter((_, i) => i !== index - 1);
                             document.cookie = "college_booked=" + bookedarr.join("~");
                             console.log(bookedarr);
-
+                            tochangedataafterdeleted(bookedarr.join("~"));
 
                             const clickedContainer = this.parentElement.parentElement.parentElement.parentElement.parentElement;
 

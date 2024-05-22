@@ -6,10 +6,7 @@ import Page3 from './components/Page3';
 import Adanpradan from './components/Adanpradan';
 import Studentprofile from './Studentprofile';
 import Studentpage1 from './components/Studentpage1.js';
-import Year1 from './components/Year1.js';
-import Year2 from './components/Year2.js';
-import Year3 from './components/Year3.js';
-import Year4 from './components/Year4.js';
+import StudentBookedDetails from './components/StudentBookedDetails.js';
 function App() {
   return (
     <>
@@ -24,10 +21,7 @@ function App() {
           <Route path="Login1" element={<Pagelog2/> }/>
           <Route path="Login2" element={<Page3/> }/>
           <Route path="studpof" element={<Studentprofile/> }/>
-          <Route path="year1" element={<Year1/> }/>
-          <Route path="year2" element={<Year2/> }/>
-          <Route path="year3" element={<Year3/> }/>
-          <Route path="year4" element={<Year4/> }/>
+          <Route path="student_booked_details" element={<StudentBookedDetails/> }/>
           </Routes>
         </Router>
         </div>

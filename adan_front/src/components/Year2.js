@@ -3,8 +3,8 @@ import "./Year2.css";
 import { Link } from "react-router-dom"
 export default function Year2() {
     return (
-    <>
-             <div className="namebox" type="button"></div>
+        <>
+            <div className="namebox" type="button"></div>
             <Link to={"/"}><img src="imagesre\logo3.jpg" alt="logo" height="110" width="110" className="logo" type="button" /></Link>
             <div className="fixed-top">
                 <div className="piribo">
@@ -58,7 +58,7 @@ export default function Year2() {
             <div style={{ color: "black" }} className="branch04" type="button"><center><h3><br />CSM</h3></center></div>
 
             <div className="subbox1">
-            <h1 style={{ color: "#ffffff" }} className="yeartext">  S U B J E C T </h1>
+                <h1 style={{ color: "#ffffff" }} className="yeartext">  S U B J E C T </h1>
             </div>
 
             <div style={{ color: "black" }} className="branch11" type="button" id='button1' onclick="selectButton('button1')"><center><h3><br />DSC++</h3></center></div>
@@ -68,10 +68,10 @@ export default function Year2() {
 
             <div>
 
-           
+
             </div>
 
-                        </>
-                        )
+        </>
+    )
 }
 
