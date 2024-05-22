@@ -7,11 +7,13 @@ import 'flatpickr/dist/flatpickr.min.css';
 import "./page3.css";
 
 export default function Page3() {
+    var checkerdisplaythebooked = true;
     let mdbstr = [];
     const college_email = getCookie("college_email");
     const college_college = getCookie("college_college");
     const college_booked = getCookie("college_booked");
-
+    const college_studentbooked = getCookie("college_studentbooked");
+    console.log("others who booked" + college_studentbooked);
     // let bookedarr = getCookie("college_booked").split("~");
     // if (bookedarr.length === 1 && bookedarr[0] === ".") {
     //     const bookedhistoryheader = document.getElementById("bookedhistoryheader");
@@ -36,11 +38,11 @@ export default function Page3() {
     //         }, 2000);
     //     }
     //     }
-        
+
 
     //     appendDataWithDelay(1);
     // }
-    
+
     console.log(college_email);
     console.log(college_college);
     console.log(college_booked);
@@ -63,7 +65,7 @@ export default function Page3() {
     let subjectcustomstr = "";
     let custombranchval = " ";
     let customsubjectval = " ";
-    
+
     const output = document.getElementById('output');
     const output1 = document.getElementById('output1');
     const custombranchinput = document.getElementById("custombranchinput");
@@ -323,7 +325,7 @@ export default function Page3() {
 
 
     async function onbuttonclick() {
-        
+
         for (let i = 0; i < 4; i++) {
             if (mdbstr[i].length === 0) {
                 alert("fill all feilds..!!");
@@ -334,7 +336,7 @@ export default function Page3() {
         var idsec = mdbstr[1];
         var idthird = mdbstr[2];
         var idfourth = mdbstr[3];
-        
+
         var idfifth = getCookie("college_college");;
 
         var cls = {
@@ -363,7 +365,7 @@ export default function Page3() {
         } catch (error) {
             console.error("error:", error);
         }
-        
+
 
         const popup = document.getElementById("popuplab");
         popup.style.transform = "scale(0)";
@@ -390,28 +392,25 @@ export default function Page3() {
         const popup = document.getElementById("popuplab");
         popup.style.transform = "scale(0)";
     }
-    var checkerdisplaythebooked = true;
     function opencreatedlabspopup() {
         const ll = document.getElementById("PopupForCreatedLabs");
-        ll.style.transform = "scale(1)";   
-        // if(checkerdisplaythebooked){
-
-        //     displaythebooked();
-        // }
-        displaythebooked();
+        ll.style.transform = "scale(1)";
+        if(checkerdisplaythebooked){
+            displaythebooked();
+        }
 
     }
-    async function fetchthevreatedlabspopdata(){
-        
+    async function fetchthevreatedlabspopdata() {
+
         try {
             const email = college_email;
             const college = college_college;
             const booked1 = mdbstr.toString();
 
 
-            const cls = { email, college , booked1 };
+            const cls = { email, college, booked1 };
             const response = await fetch('http://localhost:4000/api/updatethemanagementbooked', {
-                
+
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json",
@@ -427,7 +426,7 @@ export default function Page3() {
                 console.log("succesfully ");
             } else {
                 alert("something fishy broo.....!!");
-               
+
             }
         } catch (error) {
             console.error('Error occurred:', error);
@@ -440,38 +439,12 @@ export default function Page3() {
         ll.style.transform = "scale(0)";
     }
 
-    function displaythebooked(){
-        checkerdisplaythebooked = false;
-        let bookedarr = getCookie("college_booked").split("~");
-        if(bookedarr.length === 1  ){
-            const bookedhistoryheader = document.getElementById("bookedhistoryheader");
-            bookedhistoryheader.innerText = "No booking History..! bro hehe";
-        }
-        else{ 
-            let dataDiv = document.getElementById("managementbookeddata");
-    
-        function appendDataWithDelay(index) {
-            if (index < bookedarr.length) {
-                let paragraph = document.createElement("p");
-                paragraph.textContent = bookedarr[index];
-    
-                
-                    dataDiv.appendChild(paragraph);
-                
-    
-                index++;
-                setTimeout(function () {
-                    appendDataWithDelay(index);
-                }, 1000);
-            }
-            }
-            
-    
-            appendDataWithDelay(1);
-        }
-    }
     function displaythebooked() {
         checkerdisplaythebooked = false;
+        const newdivshead = document.querySelector(".telsugapedhadhi");
+        if (newdivshead) {
+            newdivshead.remove();
+        }
         let bookedarr = getCookie("college_booked").split("~");
         if (bookedarr.length === 1) {
             const bookedhistoryheader = document.getElementById("bookedhistoryheader");
@@ -480,17 +453,67 @@ export default function Page3() {
         else {
             let dataDiv = document.getElementById("managementbookeddata");
 
-
-
+            dataDiv.innerHTML = ''; 
             function appendDataWithDelay(index) {
                 if (index < bookedarr.length) {
                     let contentarray = bookedarr[index].split(",");
+                    let pedhadiv =  document.createElement("div");
+                    pedhadiv.className = "telsugapedhadhi";
+
                     let griddiv = document.createElement("div");
-                    griddiv.className = "container-fluid";
+                    let griddiv0 = document.createElement("div");
+                    if (index > 0) {
+
+                        griddiv0.className = "container-fluid-seps";
+                    } else {
+                        griddiv0.className = "container-fluid-sepsheader";
+
+                    }
+
+                    griddiv.className = "container-fluid-seps" + index;
                     let griddivin = document.createElement("div");
-                    griddivin.className = "setppeddata";
+                    if (index > 0) {
+                        griddivin.className = "setppeddata";
+                    } else {
+                        griddivin.className = "setppeddataheader";
+                    }
                     let griddivrow = document.createElement("div");
-                    griddivrow.className = "row "+index;
+                    griddivrow.className = "row " + index;
+                    let griddivrownext = document.createElement("div");
+                    griddivrownext.className = "row";
+                    griddivrownext.textContent = ".";
+                    let griddivrownext1 = document.createElement("div");
+                    griddivrownext1.className = "row";
+
+
+                    let griddivrownext2 = document.createElement("div");
+                    griddivrownext2.className = "row";
+                    let griddivrownextcolsm1 = document.createElement("div");
+                    griddivrownextcolsm1.className = "col-1";
+                    griddivrownextcolsm1.textContent = "   .  ";
+                    let griddivrownextcolsp2 = document.createElement("div");
+                    griddivrownextcolsp2.className = "col-1";
+                    griddivrownextcolsp2.textContent = "   .  ";
+                    let griddivrownextcols0 = document.createElement("div");
+                    griddivrownextcols0.className = "col-4";
+                    let griddivrownextcols0forsty = document.createElement("div");
+                    griddivrownextcols0forsty.className = "managestudentdetailsstyleapply";
+                    griddivrownextcols0forsty.textContent = "Manage_Student_Details";
+                    let griddivrownextcols1 = document.createElement("div");
+                    griddivrownextcols1.className = "col-2";
+                    griddivrownextcols1.textContent = "   .  ";
+                    let griddivrownextcols2 = document.createElement("div");
+                    griddivrownextcols2.className = "col-4";
+                    let griddivrownextcols2forsty = document.createElement("div");
+                    griddivrownextcols2forsty.className = "deletestyleapply";
+                    griddivrownextcols2forsty.textContent = "Delete_This_Lab";
+                    griddivrownextcols0.appendChild(griddivrownextcols0forsty);
+                    griddivrownextcols2.appendChild(griddivrownextcols2forsty);
+                    griddivrownext1.appendChild(griddivrownextcolsm1);
+                    griddivrownext1.appendChild(griddivrownextcols0);
+                    griddivrownext1.appendChild(griddivrownextcols1);
+                    griddivrownext1.appendChild(griddivrownextcols2);
+                    griddivrownext1.appendChild(griddivrownextcolsp2);
                     let griddivcol3 = document.createElement("div");
                     griddivcol3.className = "col-2";
                     let colsno = document.createElement("div");
@@ -514,33 +537,48 @@ export default function Page3() {
                     let griddivcol34 = document.createElement("div");
                     griddivcol34.className = "col-1";
                     let colresprowdel = document.createElement("div");
-                    var clnofdel = "del"+index+"";
-                    colresprowdel.className = "clnofdel";
+                    let wholedetails = document.createElement("div");
+                    wholedetails.className = "detailsblockinmanagement";
+                    var clnofdel = "del" + index + "";
+                    colresprowdel.className = clnofdel;
                     let paragraph = document.createElement("p");
-                    paragraph.textContent = bookedarr[index];
-                    if(index > 0){
+                    if (index > 0) {
 
-                        colsno.textContent = ""+index;
+                        griddivrownextcols2forsty.addEventListener('click', function () {
+                            bookedarr = bookedarr.filter((_, i) => i !== index);
+                            document.cookie = "college_booked=" + bookedarr.join("~");
+                            console.log(bookedarr);
+
+
+                            const clickedContainer = this.parentElement.parentElement.parentElement.parentElement.parentElement;
+
+                            // Hide the container div
+                            clickedContainer.style.display = "none";
+                            checkerdisplaythebooked = true;
+                        });
+
+                    }
+                    paragraph.textContent = bookedarr[index];
+                    if (index > 0) {
+                        colsno.textContent = "" + index;
                         colresprowdel.textContent = "details";
-                    }else{
+                    } else {
                         colsno.textContent = "S.NO";
                         colresprowdel.textContent = "";
 
 
                     }
-                    colyear.textContent =contentarray[0] ;
+                    colyear.textContent = contentarray[0];
                     colsection.textContent = contentarray[1];
                     colsubject.textContent = contentarray[2];
                     coltimeanddate.textContent = contentarray[3];
-
                     griddivcol3.appendChild(colsno);
-
                     griddivcol30.appendChild(colyear);
                     griddivcol31.appendChild(colsection);
                     griddivcol32.appendChild(colsubject);
                     griddivcol33.appendChild(coltimeanddate);
-                    griddivcol34.appendChild(colresprowdel);
-
+                    griddivcol34.appendChild(wholedetails);
+                    wholedetails.appendChild(colresprowdel);
                     griddivrow.appendChild(griddivcol3);
                     griddivrow.appendChild(griddivcol30);
                     griddivrow.appendChild(griddivcol31);
@@ -548,11 +586,30 @@ export default function Page3() {
                     griddivrow.appendChild(griddivcol33);
                     griddivrow.appendChild(griddivcol34);
                     griddivin.appendChild(griddivrow);
-                    griddiv.appendChild(griddivin);
+                    griddivin.appendChild(griddivrownext);
+                    griddivin.appendChild(griddivrownext1);
+                    griddivin.appendChild(griddivrownext2);
+
+                    griddiv0.appendChild(griddivin);
+                    griddiv.appendChild(griddiv0);
+                    pedhadiv.appendChild(griddiv);
+                    if (index > 0) {
+
+
+                        griddivcol34.addEventListener('click', function () {
+                            const sss = griddiv0.style.height;
+                            if (sss === "45px" || sss === "") {
+                                griddiv0.style.height = "200px";
+                            }
+                            else {
+                                griddiv0.style.height = "45px";
+                            }
+                        });
+                    }
                     let breakv = document.createElement("br");
                     dataDiv.appendChild(breakv);
 
-                    dataDiv.appendChild(griddiv);
+                    dataDiv.appendChild(pedhadiv);
 
 
                     index++;
@@ -566,6 +623,7 @@ export default function Page3() {
             appendDataWithDelay(0);
         }
     }
+
     //onMouseLeave={() => handleMouseOut1()}
     return (
 
@@ -595,18 +653,20 @@ export default function Page3() {
             <div className="fixed-top">
                 <div className="allreset" id="allreset" onClick={() => reloadPage()}  >
                     <br></br>
-                    <h1>RESET</h1> </div>
+                    <h1>RESET</h1>
+                </div>
             </div>
             <div className="namebox" type="button"></div>
             <Link to={"/"}><img src="imagesre\logo3.jpg" alt="logo" height="110" width="110" className="logo" type="button" /></Link>
             <div className="PopupForCreatedLabs" id="PopupForCreatedLabs" onMouseLeave={() => handleMouseOut1()} >
                 <div className="bookedhistoryheader" id="bookedhistoryheader" >
-                    the booked History 
+                    the booked History
                 </div>
                 <div className="managementbookeddata" id="managementbookeddata">
-                      
+
                 </div>
             </div>
+
             <div className="piribo">
                 <div className="container-fluid">
                     <div className="row">

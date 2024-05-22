@@ -65,16 +65,18 @@ export default function Pagelog2() {
                 console.log(response);
                 if (response.status === 200) {
                     const responseData = await response.json();
-                    const { email, college , booked } = responseData;
+                    const { email, college , booked , studentbooked } = responseData;
                     console.log(booked);
                     
                     const college_email =  email;
                     const college_college =  college ; 
                     const college_booked =  booked ; 
+                    const college_studentbooked =  studentbooked ; 
                     const expirationMinutes = 90;
                     setCookie("college_email", college_email, expirationMinutes);
                     setCookie("college_college", college_college, expirationMinutes);
                     setCookie("college_booked", college_booked, expirationMinutes);
+                    setCookie("college_studentbooked", college_studentbooked, expirationMinutes);
                     window.location.href = '/Login2';
                 }
                 else {

@@ -845,10 +845,10 @@
   width: 86rem;
   height:40rem ;
   transition: all 0.5s ease-in-out;
-  background-color: #DEB887;
   border-radius: 5%;
   transform: scale(0);  
   overflow-x: hidden;
+  background-color: #DEB887;
   border:  solid 5px  rgb(126, 92, 20);
   border-radius: 20px 20px 20px 20px; 
   box-shadow: 0px 0px 5px #8F6600FF, 0px 0px 4px #8F6600FF;
@@ -859,6 +859,7 @@
 
 
 .bookedhistoryheader{
+  cursor: url('C:/Users/P.SUJITH/OneDrive/Desktop/a/after/reck/react/reactproject/adan_front/public/imagesre/ggoo-removebg-preview.png'), auto;
   pointer-events: none;
 }
 
@@ -869,3 +870,75 @@
 
 
 
+.detailsblockinmanagement{
+  cursor: pointer;
+  background-color: #ffffff;
+  transform: scale(1);
+  border:  solid 5px  rgb(255, 255, 255);
+  border-radius: 20px 20px 20px 20px; 
+  box-shadow: 0px 0px 5px rgb(255, 255, 255), 0px 0px 4px rgb(255, 255, 255);
+  transition: all 0.15s ease-in-out;
+
+}
+.detailsblockinmanagement:hover{
+  transform: scale(1.1);
+  background-color: #ffffff;
+  border:  solid 5px  #8F6600FF;
+  border-radius: 20px 20px 20px 20px; 
+  box-shadow: 0px 0px 5px #8F6600FF, 0px 0px 4px #8F6600FF;
+
+}
+.setppeddata{
+  margin-top: 3px;
+  height: 200px;
+  width: 100%;
+}
+.setppeddataheader{
+  margin-top: 5px;
+  height: 200px;
+  width: 100%;
+}
+
+.container-fluid-seps{
+  height: 44px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom:  solid 5px  #8F6600FF;
+  transition: all 0.3s ease-in-out;
+}
+.container-fluid-sepsheader{
+  height: 35px;
+  overflow: hidden;
+
+}
+
+.managestudentdetailsstyleapply{
+  margin-top: 20px;
+  cursor: pointer;
+  color: #8F6600FF;
+  border-radius: 20px 20px 20px 20px ;
+  border: #8F6600FF solid 3px;
+  background-color: white;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+.managestudentdetailsstyleapply:hover{
+  transform: scale(1.1);
+
+
+}
+.deletestyleapply{
+  margin-top: 20px;
+  cursor: pointer;
+  color: white;
+  border-radius: 20px 20px 20px 20px ;
+  border: rgb(255, 255, 255) solid 3px;
+  background-color: #8F6600FF;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+.deletestyleapply:hover{
+  transform: scale(1.1);
+
+
+}
